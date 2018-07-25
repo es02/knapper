@@ -1,7 +1,8 @@
-<?php 
+<?php
 namespace es02\knapper\controller;
-use es02\knapper\model\item;
-use es02\knapper\model\box;
+
+use es02\knapper\model\Item;
+use es02\knapper\model\Box;
 
 class 2dRotate{
 
@@ -12,7 +13,13 @@ class 2dRotate{
 
     public function rotateX(item $item)
     {
-        //
+        $length = null;
+        $width = null;
+
+        $item->length = $width;
+        $item->width = $length;
+
+        return $item;
     }
 }
 ?>
