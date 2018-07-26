@@ -12,14 +12,12 @@ class Rotate3d extends Rotate2d
         //
     }
 
-    public function rotateZ(item $item)
+    public function rotateZ(item $item):void
     {
-        $length = null;
-        $height = null;
+        $length = $item->length;
+        $height = $item->height;
 
         $item->length = $height;
         $item->height = $length;
-
-        return $item;
     }
 }

@@ -12,14 +12,12 @@ class Rotate2d
         //
     }
 
-    public function rotateX(item $item)
+    public function rotateXY(item $item):void
     {
-        $length = null;
-        $width = null;
+        $length = $item->length;
+        $width = $item->width;
 
         $item->length = $width;
         $item->width = $length;
-
-        return $item;
     }
 }

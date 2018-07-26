@@ -2,8 +2,9 @@
 
 Simple, dependency-free knapsack solver
 
-[![Build Status: Master](https://travis-ci.com/es02/knapper.svg?branch=master)](https://travis-ci.com/es02/knapper)
-[![Build Status: Dev](https://travis-ci.com/es02/knapper.svg?branch=dev)](https://travis-ci.com/es02/knapper)
+Master: [![Build Status: Master](https://travis-ci.com/es02/knapper.svg?branch=master)](https://travis-ci.com/es02/knapper)
+
+Dev: [![Build Status: Dev](https://travis-ci.com/es02/knapper.svg?branch=dev)](https://travis-ci.com/es02/knapper)
 
 ## Getting Started
 

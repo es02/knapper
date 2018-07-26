@@ -18,34 +18,34 @@ class Knapper
      * to exceed.
      * @var float
      */
-    protected $maxCubic = null;
+    public $maxCubic = null;
 
     /**
      * Allows the maximum gross weight for the boxes to be overriden where this
      * value is lower.
      * @var float
      */
-    protected $maxWeight = null;
+    public $maxWeight = null;
 
     /**
      * Allows us to make intelligent decisions about conversions on weights
      * @var float
      */
-    protected $weightType = 'g';
+    public $weightType = 'g';
 
     /**
      * Used to hold array of items provided by the calling code once they are
      * converted to model\item objects
      * @var array
      */
-    protected $items = array();
+    public $items = array();
 
     /**
      * Used to hold array of boxes provided by the calling code once they are
      * converted to model\box objects
      * @var array
      */
-    protected $boxes = array();
+    public $boxes = array();
 
     /**
      * Constructor class, sets initial class state
