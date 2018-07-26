@@ -14,7 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Initial controllers stubbed in
 - Added PHPUnit for dev builds only
 - Added PHPLint for dev builds only
+- Added PHP_CodeStandards for dev builds only
 - Added TravisCI for Build Management
+- Initial unit tests added
 
 ### Changed
 - Readme to include actual information instead of base GitHub autogen file.
