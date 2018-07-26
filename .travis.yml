@@ -7,11 +7,8 @@ php:
 before_script:
     - composer self-update
     - composer install --prefer-source --no-interaction --dev
-    - chmod +x ./vendor/bin/*
-    - chmod +x ./vendor/overtrue/phplint/bin/phplint
-    - chmod +x ./vendor/squizlabs/php_codesniffer/bin/phpcs
 
 script:
-    - ./vendor/bin/phplint
-    - ./vendor/bin/phpcs --colors --standard=PSR2 src
+    - php ./vendor/bin/phplint
+    - php ./vendor/bin/phpcs --colors --standard=PSR2 src
     - phpunit
