@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Readme to include actual information instead of base GitHub autogen file.
+- Build status images to readme for master & dev branches
 - Licence filename to match everything else, may change this back in future.
 
 [Unreleased]: https://github.com/es02/knapper/tree/dev

@@ -2,6 +2,9 @@
 
 Simple, dependency-free knapsack solver
 
+[![Build Status: Master](https://travis-ci.com/es02/knapper.svg?branch=master)](https://travis-ci.com/es02/knapper)
+[![Build Status: Dev](https://travis-ci.com/es02/knapper.svg?branch=dev)](https://travis-ci.com/es02/knapper)
+
 ## Getting Started
 
 These instructions will get you a copy of the project installed in your composer dependencies.
