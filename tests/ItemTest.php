@@ -22,6 +22,9 @@ class ItemTest extends TestCase
             $weightType = 'g';
             $thisWayUp =  false;
             $box = null;
+            $x = 0;
+            $y = 0;
+            $z = 0;
 
             // Make testcase writing easier
             if (isset($test['lengthType'])) {
@@ -44,6 +47,9 @@ class ItemTest extends TestCase
             $this->assertObjectHasAttribute('weightType', $item);
             $this->assertObjectHasAttribute('thisWayUp', $item);
             $this->assertObjectHasAttribute('box', $item);
+            $this->assertObjectHasAttribute('x', $item);
+            $this->assertObjectHasAttribute('y', $item);
+            $this->assertObjectHasAttribute('z', $item);
 
             $this->assertEquals($item->length, $test['length']);
             $this->assertEquals($item->width, $test['width']);
@@ -53,6 +59,9 @@ class ItemTest extends TestCase
             $this->assertEquals($item->weightType, $weightType);
             $this->assertEquals($item->thisWayUp, $thisWayUp);
             $this->assertEquals($item->box, $box);
+            $this->assertEquals($item->x, $x);
+            $this->assertEquals($item->y, $y);
+            $this->assertEquals($item->z, $z);
             $this->assertEquals($item->cubic, $test['length'] * $test['width'] * $test['height']);
             unset($item);
         }

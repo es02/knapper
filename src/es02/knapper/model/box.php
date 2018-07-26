@@ -14,6 +14,20 @@ class Box
     public $weight = 0.0;
 
     /**
+     * Optional identifier
+     * @var string
+     */
+    public $name = null;
+
+    /**
+     * Do we have a limited number of this box size?
+     * Assume no.
+     * @var integer
+     */
+    public $quantity = 0;
+    public $remaining = 0;
+
+    /**
      * Store calculated cubic measurement
      * @var float
      */
@@ -47,8 +61,12 @@ class Box
         if (isset($box['weightType']) and !empty($box['weightType'])) {
             $this->weightType = $box['weightType'];
         }
-        if (isset($box['thisWayUp']) and !empty($box['thisWayUp'])) {
-            $this->thisWayUp = $box['thisWayUp'];
+        if (isset($box['quantity']) and !empty($box['quantity'])) {
+            $this->quantity = $box['quantity'];
+            $this->remaining = $box['quantity'];
+        }
+        if (isset($item['name']) and !empty($item['name'])) {
+            $this->name = $item['name'];
         }
 
         $this->cubic = $box['length'] * $box['width'] * $box['height'];
