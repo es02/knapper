@@ -4,9 +4,10 @@ namespace es02\knapper\controller;
 use es02\knapper\model\Item;
 use es02\knapper\model\Box;
 
-class Rotate2d{
+class Rotate2d
+{
 
-    public function _construct()
+    public function __construct()
     {
         //
     }
@@ -22,4 +23,3 @@ class Rotate2d{
         return $item;
     }
 }
-?>

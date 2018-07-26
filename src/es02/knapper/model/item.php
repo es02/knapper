@@ -39,7 +39,7 @@ class Item
      */
     public $box = null;
 
-    public function _construct(array $item)
+    public function __construct(array $item)
     {
         $this->length = $item[length];
         $this->width = $item[width];
@@ -47,13 +47,13 @@ class Item
         $this->weight = $item[weight];
 
         // If not set leave on sane defaults
-        if(isset($item[lengthType]) AND !empty($item[lengthType])){
+        if (isset($item[lengthType]) and !empty($item[lengthType])) {
             $this->lengthType = $item[lengthType];
         }
-        if(isset($item[weightType]) AND !empty($item[weightType])){
+        if (isset($item[weightType]) and !empty($item[weightType])) {
             $this->weightType = $item[weightType];
         }
-        if(isset($item[thisWayUp]) AND !empty($item[thisWayUp])){
+        if (isset($item[thisWayUp]) and !empty($item[thisWayUp])) {
             $this->thisWayUp = $item[thisWayUp];
         }
 

@@ -34,6 +34,10 @@ class ComposerStaticInitf7a99e5b85a86389a4aa65c1bf0068b0
         array (
             'Overtrue\\PHPLint\\' => 17,
         ),
+        'K' => 
+        array (
+            'Knapper\\' => 8,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -79,6 +83,10 @@ class ComposerStaticInitf7a99e5b85a86389a4aa65c1bf0068b0
         'Overtrue\\PHPLint\\' => 
         array (
             0 => __DIR__ . '/..' . '/overtrue/phplint/src',
+        ),
+        'Knapper\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -636,6 +644,12 @@ class ComposerStaticInitf7a99e5b85a86389a4aa65c1bf0068b0
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
+        'es02\\knapper\\Knapper' => __DIR__ . '/../..' . '/src/es02/knapper/knapper.php',
+        'es02\\knapper\\controller\\Rotate2d' => __DIR__ . '/../..' . '/src/es02/knapper/controller/Rotate2d.php',
+        'es02\\knapper\\controller\\Rotate3d' => __DIR__ . '/../..' . '/src/es02/knapper/controller/Rotate3d.php',
+        'es02\\knapper\\controller\\Utilities' => __DIR__ . '/../..' . '/src/es02/knapper/controller/utilities.php',
+        'es02\\knapper\\model\\Box' => __DIR__ . '/../..' . '/src/es02/knapper/model/box.php',
+        'es02\\knapper\\model\\Item' => __DIR__ . '/../..' . '/src/es02/knapper/model/item.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

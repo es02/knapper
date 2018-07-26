@@ -1,7 +1,8 @@
 <?php
 namespace es02\knapper\controller;
 
-class Utilities {
+class Utilities
+{
     private $measurementTypes = array(
         'cm',
         'm',
@@ -68,15 +69,15 @@ class Utilities {
         )
     );
 
-    public function _construct(){
+    public function __construct()
+    {
         //
     }
 
-    public function convert($amount, $from, $to){
-        if(
-            !in_array($from, $this->measurementTypes) OR
-            !in_array($to, $this->measurementTypes)
-        ){
+    public function convert($amount, $from, $to)
+    {
+        if (!in_array($from, $this->measurementTypes) or
+            !in_array($to, $this->measurementTypes)) {
             // Something has gone very wrong here.
             throw new \Exception("Invalid measurement type(s) specified for conversion");
         }

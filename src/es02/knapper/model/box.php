@@ -33,7 +33,7 @@ class Box
      */
     private $thisWayUp =  false;
 
-    public function _construct(array $box)
+    public function __construct(array $box)
     {
         $this->length = $box[length];
         $this->width = $box[width];
@@ -41,13 +41,13 @@ class Box
         $this->weight = $box[weight];
 
         // If not set leave on sane defaults
-        if(isset($box[lengthType]) AND !empty($box[lengthType])){
+        if (isset($box[lengthType]) and !empty($box[lengthType])) {
             $this->lengthType = $box[lengthType];
         }
-        if(isset($box[weightType]) AND !empty($box[weightType])){
+        if (isset($box[weightType]) and !empty($box[weightType])) {
             $this->weightType = $box[weightType];
         }
-        if(isset($box[thisWayUp]) AND !empty($box[thisWayUp])){
+        if (isset($box[thisWayUp]) and !empty($box[thisWayUp])) {
             $this->thisWayUp = $box[thisWayUp];
         }
 

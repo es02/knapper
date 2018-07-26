@@ -1,8 +1,8 @@
 <?php
 namespace es02\knapper;
 
-use es02\knapper\model\item;
-use es02\knapper\model\box;
+use es02\knapper\model\Item;
+use es02\knapper\model\Box;
 
 /**
  * Knapper: A simple, dependancy free knapsack solver intended for optimizing
@@ -55,24 +55,39 @@ class Knapper
      * @param  float  $maxWeight  Upper ceiling for box Gross Weight (Optional)
      * @param  string $weightType Used for determining upper ceiling (Optional)
      */
-    public function _construct(
+    public function __construct(
         array $items,
         array $boxes,
         float $maxCubic = null,
         float $maxWeight = null,
         string $weightType = null
-    )
-    {
-        if(!empty($maxCubic)){
+    ) {
+        // Ensure usage is respected
+        if (empty($items) or empty($boxes)) {
+            throw new \Exception(
+                "You must provide at least one Item and at least one Box to use
+Knapper"
+            );
+        }
+
+        if (!empty($maxCubic)) {
             $this->maxCubic = $maxCubic;
         }
 
-        if(!empty($maxWeight)){
+        if (!empty($maxWeight)) {
             $this->maxWeight = $maxWeight;
         }
 
-        if(!empty($weightType)){
+        if (!empty($weightType)) {
             $this->weightType = $weightType;
+        }
+
+        // Build object arrays
+        foreach ($items as $item) {
+            $this->items[] = new Item($item);
+        }
+        foreach ($boxs as $box) {
+            $this->boxs[] = new Box($box);
         }
     }
 }
