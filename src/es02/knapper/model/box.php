@@ -5,7 +5,7 @@ namespace es02\knapper\model;
 class Box
 {
     /**
-     * Sets gross item measurements
+     * Sets gross box measurements
      * @var float
      */
     public $length = 0.0;
@@ -33,30 +33,24 @@ class Box
      */
     private $thisWayUp =  false;
 
-    /**
-     * Once sorted we store box number here
-     * @var integer
-     */
-    public $box = null;
-
-    public function _construct(array $item)
+    public function _construct(array $box)
     {
-        $this->length = $item[length];
-        $this->width = $item[width];
-        $this->height = $item[height];
-        $this->weight = $item[weight];
+        $this->length = $box[length];
+        $this->width = $box[width];
+        $this->height = $box[height];
+        $this->weight = $box[weight];
 
         // If not set leave on sane defaults
-        if(isset($item[lengthType]) AND !empty($item[lengthType])){
-            $this->lengthType = $item[lengthType];
+        if(isset($box[lengthType]) AND !empty($box[lengthType])){
+            $this->lengthType = $box[lengthType];
         }
-        if(isset($item[weightType]) AND !empty($item[weightType])){
-            $this->weightType = $item[weightType];
+        if(isset($box[weightType]) AND !empty($box[weightType])){
+            $this->weightType = $box[weightType];
         }
-        if(isset($item[thisWayUp]) AND !empty($item[thisWayUp])){
-            $this->thisWayUp = $item[thisWayUp];
+        if(isset($box[thisWayUp]) AND !empty($box[thisWayUp])){
+            $this->thisWayUp = $box[thisWayUp];
         }
 
-        $this->cubic = $item[length] * $item[width] * $item[height];
+        $this->cubic = $box[length] * $box[width] * $box[height];
     }
 }

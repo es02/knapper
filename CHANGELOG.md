@@ -10,9 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Basic folder structure
 - composer.json skeleton
 - Base class skeleton
+- Models stubbed in
+- Initial controllers stubbed in
+- Added PHPUnit for dev builds only
+- Added PHPLint for dev builds only
+- Added TravisCI for Build Management
 
 ### Changed
 - Readme to include actual information instead of base GitHub autogen file.
 - Licence filename to match everything else, may change this back in future.
 
-[Unreleased]: https://github.com/es02/knapper/dev
+[Unreleased]: https://github.com/es02/knapper/tree/dev

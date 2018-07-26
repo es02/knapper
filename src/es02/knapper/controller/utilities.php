@@ -68,6 +68,10 @@ class Utilities {
         )
     );
 
+    public function _construct(){
+        //
+    }
+
     public function convert($amount, $from, $to){
         if(
             !in_array($from, $this->measurementTypes) OR
