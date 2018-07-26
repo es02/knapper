@@ -24,13 +24,13 @@ class ItemTest extends TestCase
             $box = null;
 
             // Make testcase writing easier
-            if(isset($test['lengthType'])){
+            if (isset($test['lengthType'])){
                 $lengthType = $test['lengthType'];
             }
-            if(isset($test['weightType'])){
+            if (isset($test['weightType'])){
                 $weightType = $test['weightType'];
             }
-            if(isset($test['thisWayUp'])){
+            if (isset($test['thisWayUp'])){
                 $thisWayUp = $test['thisWayUp'];
             }
 

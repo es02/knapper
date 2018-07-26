@@ -9,4 +9,5 @@ before_script:
 script:
     - php ./vendor/bin/phplint
     - php ./vendor/bin/phpcs --colors --standard=PSR2 src
+    - php ./vendor/bin/phpcs --colors --standard=PSR2 tests
     - phpunit
