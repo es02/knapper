@@ -1,6 +1,6 @@
 <?php
 
-namespace es02\knapper\model;
+namespace es02\Knapper\model;
 
 class Item
 {
@@ -31,7 +31,7 @@ class Item
      * important for fragile and dangerous goods.
      * @var bool
      */
-    private $thisWayUp =  false;
+    public $thisWayUp =  false;
 
     /**
      * Once sorted we store box number here
