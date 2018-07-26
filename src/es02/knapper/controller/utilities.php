@@ -1,5 +1,5 @@
 <?php
-namespace es02\knapper\controller;
+namespace es02\Knapper\controller;
 
 class Utilities
 {
@@ -74,7 +74,7 @@ class Utilities
         //
     }
 
-    public function convert($amount, $from, $to)
+    public function convert($amount, $from, $to):float
     {
         if (!in_array($from, $this->measurementTypes) or
             !in_array($to, $this->measurementTypes)) {

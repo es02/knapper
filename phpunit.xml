@@ -1,7 +1,6 @@
 <phpunit colors="true" bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="All">
-            <exclude>vendor</exclude>
             <directory suffix="Test.php" phpVersion="7.0" phpVersionOperator=">=">tests</directory>
             <file phpVersion="7.0" phpVersionOperator=">=">Test.php</file>
         </testsuite>

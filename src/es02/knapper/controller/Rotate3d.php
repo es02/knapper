@@ -1,5 +1,5 @@
 <?php
-namespace es02\knapper\controller;
+namespace es02\Knapper\controller;
 
 use es02\knapper\model\Item;
 use es02\knapper\model\Box;

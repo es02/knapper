@@ -8,7 +8,7 @@
         "classmap": [
             "src/"
         ],
-        "psr-4": {"Knapper\\": "src/"}
+        "psr-4": {"Knapper\\": "src/es02/Knapper/"}
     },
     "require-dev": {
         "phpunit/phpunit": "^7.2",

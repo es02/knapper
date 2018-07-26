@@ -41,22 +41,22 @@ class Item
 
     public function __construct(array $item)
     {
-        $this->length = $item[length];
-        $this->width = $item[width];
-        $this->height = $item[height];
-        $this->weight = $item[weight];
+        $this->length = $item['length'];
+        $this->width = $item['width'];
+        $this->height = $item['height'];
+        $this->weight = $item['weight'];
 
         // If not set leave on sane defaults
-        if (isset($item[lengthType]) and !empty($item[lengthType])) {
-            $this->lengthType = $item[lengthType];
+        if (isset($item['lengthType']) and !empty($item['lengthType'])) {
+            $this->lengthType = $item['lengthType'];
         }
-        if (isset($item[weightType]) and !empty($item[weightType])) {
-            $this->weightType = $item[weightType];
+        if (isset($item['weightType']) and !empty($item['weightType'])) {
+            $this->weightType = $item['weightType'];
         }
-        if (isset($item[thisWayUp]) and !empty($item[thisWayUp])) {
-            $this->thisWayUp = $item[thisWayUp];
+        if (isset($item['thisWayUp']) and !empty($item['thisWayUp'])) {
+            $this->thisWayUp = $item['thisWayUp'];
         }
 
-        $this->cubic = $item[length] * $item[width] * $item[height];
+        $this->cubic = $item['length'] * $item['width'] * $item['height'];
     }
 }

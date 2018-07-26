@@ -35,22 +35,22 @@ class Box
 
     public function __construct(array $box)
     {
-        $this->length = $box[length];
-        $this->width = $box[width];
-        $this->height = $box[height];
-        $this->weight = $box[weight];
+        $this->length = $box['length'];
+        $this->width = $box['width'];
+        $this->height = $box['height'];
+        $this->weight = $box['weight'];
 
         // If not set leave on sane defaults
-        if (isset($box[lengthType]) and !empty($box[lengthType])) {
-            $this->lengthType = $box[lengthType];
+        if (isset($box['lengthType']) and !empty($box['lengthType'])) {
+            $this->lengthType = $box['lengthType'];
         }
-        if (isset($box[weightType]) and !empty($box[weightType])) {
-            $this->weightType = $box[weightType];
+        if (isset($box['weightType']) and !empty($box['weightType'])) {
+            $this->weightType = $box['weightType'];
         }
-        if (isset($box[thisWayUp]) and !empty($box[thisWayUp])) {
-            $this->thisWayUp = $box[thisWayUp];
+        if (isset($box['thisWayUp']) and !empty($box['thisWayUp'])) {
+            $this->thisWayUp = $box['thisWayUp'];
         }
 
-        $this->cubic = $box[length] * $box[width] * $box[height];
+        $this->cubic = $box['length'] * $box['width'] * $box['height'];
     }
 }

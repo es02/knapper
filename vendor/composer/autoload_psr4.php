@@ -15,7 +15,7 @@ return array(
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Overtrue\\PHPLint\\' => array($vendorDir . '/overtrue/phplint/src'),
-    'Knapper\\' => array($baseDir . '/src'),
+    'Knapper\\' => array($baseDir . '/src/es02/Knapper'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );
