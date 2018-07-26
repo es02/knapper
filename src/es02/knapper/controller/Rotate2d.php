@@ -4,20 +4,20 @@ namespace es02\knapper\controller;
 use es02\knapper\model\Item;
 use es02\knapper\model\Box;
 
-class 3dRotate extends 2dRotate{
+class Rotate2d{
 
     public function _construct()
     {
         //
     }
 
-    public function rotateZ(item $item)
+    public function rotateX(item $item)
     {
         $length = null;
-        $height = null;
+        $width = null;
 
-        $item->length = $height;
-        $item->height = $length;
+        $item->length = $width;
+        $item->width = $length;
 
         return $item;
     }
