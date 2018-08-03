@@ -3,7 +3,7 @@ namespace es02\Knapper\controller;
 
 class Utilities
 {
-    private $measurementTypes = array(
+    const measurementTypes = array(
         'cm',
         'm',
         'in',
@@ -18,7 +18,7 @@ class Utilities
      * Conversion multipliers
      * @var array
      */
-    private $converters = array(
+    const converters = array(
         'cm' => array(
             'cm' => 1,
             'm' => 0.01,
@@ -74,14 +74,14 @@ class Utilities
         //
     }
 
-    public function convert($amount, $from, $to):float
+    public static function convert($amount, $from, $to):float
     {
-        if (!in_array($from, $this->measurementTypes) or
-            !in_array($to, $this->measurementTypes)) {
+        if (!in_array($from, self::measurementTypes) or
+            !in_array($to, self::measurementTypes)) {
             // Something has gone very wrong here.
             throw new \Exception("Invalid measurement type(s) specified for conversion");
         }
 
-        return $amount * $this->converters[$from][$to];
+        return $amount * self::converters[$from][$to];
     }
 }
