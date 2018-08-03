@@ -90,4 +90,9 @@ Knapper"
             $this->boxs[] = new Box($box);
         }
     }
+
+    public function pack()
+    {
+        //
+    }
 }

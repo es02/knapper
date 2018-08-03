@@ -26,6 +26,7 @@ composer require es02/knapper
 
 ```
 $knapper = new Knapper($items, $boxes);
+$results = $knapper->pack();
 ```
 
 To use Knappper you will need an array of objects to be packed and an array of boxes to pack them into.
@@ -40,6 +41,7 @@ These options allow you to achieve this with minimal effort.
 
 ```
 $knapper = new Knapper($items, $boxes, 15, 15 , 'kg');
+$results = $knapper->pack();
 ```
 
 Both arrays require the following fields:
