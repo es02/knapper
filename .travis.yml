@@ -5,9 +5,11 @@ php:
 before_script:
     - composer self-update
     - composer install --prefer-source --no-interaction
+    - chmod +x ./vendor/bin/phpcpd
 
 script:
     - php ./vendor/bin/phplint
+    - ./vendor/bin/phpcpd ./src
     - php ./vendor/bin/phpcs --colors --standard=PSR2 src
     - php ./vendor/bin/phpcs --colors --standard=PSR2 tests
     - phpunit
