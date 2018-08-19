@@ -62,12 +62,12 @@ class Primitive
                 $this->lengthType,
                 $object['length']
             );
-            $this->length = Utilities::convert(
+            $this->width = Utilities::convert(
                 $this->originalLengthType,
                 $this->lengthType,
                 $object['width']
             );
-            $this->length = Utilities::convert(
+            $this->height = Utilities::convert(
                 $this->originalLengthType,
                 $this->lengthType,
                 $object['height']
@@ -77,7 +77,7 @@ class Primitive
             $this->originalWeightType = $object['weightType'];
 
             // Standardise into neat metric units to make packing easier
-            $this->length = Utilities::convert(
+            $this->weight = Utilities::convert(
                 $this->originalWeightType,
                 $this->weightType,
                 $object['weight']

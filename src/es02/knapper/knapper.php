@@ -3,6 +3,7 @@ namespace es02\knapper;
 
 use es02\knapper\model\Item;
 use es02\knapper\model\Box;
+use es02\knapper\controller\packer;
 
 /**
  * Knapper: A simple, dependancy free knapsack solver intended for optimizing
@@ -91,8 +92,19 @@ Knapper"
         }
     }
 
-    public function pack()
+    /**
+     * Calls the packing controller
+     * @return array packed items
+     */
+    public function pack():array
     {
-        //
+        $packer = new packer();
+        return $packer->pack(
+            $this->items,
+            $this->boxes,
+            $this->maxCubic,
+            $this->maxWeight,
+            $this->weightType
+        );
     }
 }
