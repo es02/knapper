@@ -1,6 +1,6 @@
 <?php
 
-namespace es02\Knapper\model;
+namespace es02\knapper\model;
 
 class PackedBox extends Primitive
 {

@@ -1,5 +1,5 @@
 <?php
-namespace es02\Knapper\controller;
+namespace es02\knapper\controller;
 
 class Utilities
 {
