@@ -2,7 +2,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use es02\Knapper\model\Item;
+use es02\knapper\model\Item;
 
 class ItemTest extends TestCase
 {

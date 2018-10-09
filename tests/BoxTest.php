@@ -2,7 +2,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use es02\Knapper\model\Box;
+use es02\knapper\model\Box;
 
 class BoxTest extends TestCase
 {
