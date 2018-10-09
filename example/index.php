@@ -49,21 +49,21 @@ $items = array(
 );
 $boxes = array(
   array(
-    'name' =>'',
+    'name' =>'box1',
     'length' => 20,
     'width' => 60,
     'height' => 250,
     'weight' => 2.5
   ),
   array(
-    'name' =>'',
+    'name' =>'box2',
     'length' => 150,
     'width' => 600,
     'height' => 300,
     'weight' => 3
   ),
   array(
-    'name' =>'',
+    'name' =>'box3',
     'length' => 20,
     'width' => 60,
     'height' => 250,
