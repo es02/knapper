@@ -32,6 +32,7 @@ class Packer
         float $maxWeight = null,
         string $weightType = null
     ):array {
+        echo memory_get_usage(true) . PHP_EOL;
         // Start by finding the longest dimension so we can find an
         // appropriate box
         $itemID = $this->findItem($items, $maxCubic, $maxWeight, $weightType);
@@ -88,9 +89,12 @@ class Packer
                 $availableX -= ($item->x + $item->length);
                 $availableY -= ($item->y + $item->width);
                 $availableZ -= ($item->z + $item->height);
+                unset($item);
             }
+            unset($packed);
         }
-        $item = $items;
+
+        $item = $items[$itemID];
 
         // Don't 3D rotate for thiswayup items
         $end = 4;
@@ -143,7 +147,21 @@ class Packer
                 $box->height >= $item->height) {
                     return key($box);
                 }
+                switch ($i) {
+                    case 1:
+                        Rotate3d::rotateXY($item);
+                        break;
+                    case 2:
+                        Rotate3d::rotateZ($item);
+                        break;
+                    case 3:
+                        Rotate3d::rotateXY($item);
+                        break;
+                    default:
+                        break;
+                }
             }
+            unset($box);
         }
     }
 
@@ -164,7 +182,7 @@ class Packer
         $longest = 0;
         $itemID = false;
         foreach ($items as $item) {
-            if (!is_null($item->box or $item->noBox === true)) {
+            if ($item->box or $item->noBox === true) {
                 continue;
             }
 
@@ -201,6 +219,7 @@ class Packer
                 $longest = $check;
                 $itemID = key($item);
             }
+            unset($item);
         }
         return $itemID;
     }
