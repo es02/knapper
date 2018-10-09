@@ -18,56 +18,56 @@ $items = array(
     'length' => 10,
     'width' => 50,
     'height' => 200,
-    'weight' => 2
+    'weight' => 2000
   ),
   array(
     'name' =>'bats',
     'length' => 100,
     'width' => 500,
     'height' => 150,
-    'weight' => 2.5
+    'weight' => 2500
   ),
   array(
     'name' =>'cats',
     'length' => 150,
     'width' => 506,
     'height' => 205,
-    'weight' => 2.1
+    'weight' => 2100
   ),array(
     'name' =>'rats',
     'length' => 100,
     'width' => 50,
     'height' => 20,
-    'weight' => 1
+    'weight' => 1000
   ),array(
     'name' =>'gnats',
     'length' => 10,
     'width' => 5,
     'height' => 20,
-    'weight' => 0.2
+    'weight' => 200
   ),
 );
 $boxes = array(
   array(
-    'name' =>'',
+    'name' =>'box1',
     'length' => 20,
     'width' => 60,
     'height' => 250,
-    'weight' => 2.5
+    'weight' => 2500
   ),
   array(
-    'name' =>'',
+    'name' =>'box2',
     'length' => 150,
     'width' => 600,
     'height' => 300,
-    'weight' => 3
+    'weight' => 7900000
   ),
   array(
-    'name' =>'',
+    'name' =>'box3',
     'length' => 20,
     'width' => 60,
     'height' => 250,
-    'weight' => 2.5
+    'weight' => 2500
   )
 );
 
