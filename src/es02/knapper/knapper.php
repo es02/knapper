@@ -87,7 +87,7 @@ Knapper"
         foreach ($items as $item) {
             $this->items[] = new Item($item);
         }
-        foreach ($boxs as $box) {
+        foreach ($boxes as $box) {
             $this->boxs[] = new Box($box);
         }
     }

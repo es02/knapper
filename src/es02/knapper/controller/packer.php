@@ -41,8 +41,14 @@ class Packer
             return $this->packed;
         }
 
+        if (is_null($this->findBox($items[$itemID], $boxes))) {
+            $items[$itemID]->noBox = true;
+            $this->packed['seperate'][] = $items[$itemID];
+            $this->pack($items, $boxes, $maxCubic, $maxWeight, $weightType);
+        }
+
         // Are we packing an existing box or do we need to start a new one?
-        if (is_null($this->boxID)) {
+        if (is_null($this->boxID) and !$items[$itemID]->noBox) {
             $this->boxID = $this->findBox($items[$itemID], $boxes);
         }
 
@@ -51,7 +57,7 @@ class Packer
         if (is_null($itemID)) {
             $this->boxID = null;
         } elseif ($this->fitCheck($itemID, $this->boxID, $items[$itemID])) {
-            $item->box = $this->boxID;
+            $items[$itemID]->box = $this->boxID;
         }
 
         // iterate
@@ -158,7 +164,7 @@ class Packer
         $longest = 0;
         $itemID = false;
         foreach ($items as $item) {
-            if (!is_null($item->$box or $item->noBox === true)) {
+            if (!is_null($item->box or $item->noBox === true)) {
                 continue;
             }
 
