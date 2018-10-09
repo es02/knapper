@@ -10,6 +10,7 @@ class Packer
 {
     private $packed = array();
     private $boxID = null;
+    private $itemID = null;
 
     public function __construct()
     {
@@ -32,37 +33,58 @@ class Packer
         float $maxWeight = null,
         string $weightType = null
     ):array {
-        echo memory_get_usage(true) . PHP_EOL;
-        // Start by finding the longest dimension so we can find an
-        // appropriate box
-        $itemID = $this->findItem($items, $maxCubic, $maxWeight, $weightType);
+        // run first iteration so this can get off the ground
+        $i = 1;
+        $this->packer($items, $boxes, $maxCubic, $maxWeight, $weightType);
 
         // If we've run out of items then return our pickslip data
-        if (is_null($itemID) and null($this->boxID)) {
-            return $this->packed;
+        while (!is_null($this->itemID) and !is_null($this->boxID)) {
+            $this->packer($items, $boxes, $maxCubic, $maxWeight, $weightType);
+            $i++;
         }
+        echo $i;
+        return $this->packed;
+    }
 
-        if (is_null($this->findBox($items[$itemID], $boxes))) {
-            $items[$itemID]->noBox = true;
-            $this->packed['seperate'][] = $items[$itemID];
-            $this->pack($items, $boxes, $maxCubic, $maxWeight, $weightType);
+    public function packer(
+        array $items,
+        array $boxes,
+        float $maxCubic = null,
+        float $maxWeight = null,
+        string $weightType = null
+    ) {
+        // Start by finding the longest dimension so we can find an
+        // appropriate box
+        echo 1;
+        $this->itemID = $this->findItem($items, $maxCubic, $maxWeight, $weightType);
+
+        echo 2;
+        if (is_null($this->findBox($items[$this->itemID], $boxes))) {
+            echo 3;
+            $items[$this->itemID]->noBox = true;
+            echo 4;
+            $this->packed['seperate'][] = $items[$this->itemID];
+            echo 5;
+            return null;
         }
 
         // Are we packing an existing box or do we need to start a new one?
-        if (is_null($this->boxID) and !$items[$itemID]->noBox) {
-            $this->boxID = $this->findBox($items[$itemID], $boxes);
+        echo 6;
+        if (is_null($this->boxID) and !$items[$this->itemID]->noBox) {
+            echo 7;
+            $this->boxID = $this->findBox($items[$this->itemID], $boxes);
         }
 
         // if we have a box but no item then consider the box full and we'll
         // open a new one on the next pass.
+        echo 8;
         if (is_null($itemID)) {
+            echo 9;
             $this->boxID = null;
-        } elseif ($this->fitCheck($itemID, $this->boxID, $items[$itemID])) {
-            $items[$itemID]->box = $this->boxID;
+        } elseif ($this->fitCheck($itemID, $this->boxID, $items[$this->itemID])) {
+            echo 10;
+            $items[$this->itemID]->box = $this->boxID;
         }
-
-        // iterate
-        $this->pack($items, $boxes, $maxCubic, $maxWeight, $weightType);
     }
 
     /**
