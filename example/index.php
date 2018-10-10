@@ -60,7 +60,7 @@ $boxes = array(
     'length' => 150,
     'width' => 600,
     'height' => 300,
-    'weight' => 7900000
+    'weight' => 8000
   ),
   array(
     'name' =>'box3',
