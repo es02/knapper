@@ -77,7 +77,7 @@ class Utilities
     public static function convert($amount, $from, $to):float
     {
         if (!in_array($from, self::MEASUREMENT_TYPES) or
-            !in_array($to, self::MEASUREMENT_TYPES)) {
+        !in_array($to, self::MEASUREMENT_TYPES)) {
             // Something has gone very wrong here.
             throw new \Exception("Invalid measurement type(s) specified for conversion");
         }

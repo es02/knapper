@@ -55,34 +55,24 @@ class Packer
     ) {
         // Start by finding the longest dimension so we can find an
         // appropriate box
-        echo 1;
         $this->itemID = $this->findItem($items, $maxCubic, $maxWeight, $weightType);
 
-        echo 2;
         if (is_null($this->findBox($items[$this->itemID], $boxes))) {
-            echo 3;
             $items[$this->itemID]->noBox = true;
-            echo 4;
             $this->packed['seperate'][] = $items[$this->itemID];
-            echo 5;
             return null;
         }
 
         // Are we packing an existing box or do we need to start a new one?
-        echo 6;
         if (is_null($this->boxID) and !$items[$this->itemID]->noBox) {
-            echo 7;
             $this->boxID = $this->findBox($items[$this->itemID], $boxes);
         }
 
         // if we have a box but no item then consider the box full and we'll
         // open a new one on the next pass.
-        echo 8;
         if (is_null($itemID)) {
-            echo 9;
             $this->boxID = null;
         } elseif ($this->fitCheck($itemID, $this->boxID, $items[$this->itemID])) {
-            echo 10;
             $items[$this->itemID]->box = $this->boxID;
         }
     }
