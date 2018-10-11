@@ -18,7 +18,7 @@ class Packer
     }
 
     /**
-    * Solver
+    * Wrapper for solver - cuts memory usage and reduces liklihood of leaks
     * @param  array  $items      Objects to pack
     * @param  array  $boxes      Boxes to pack into
     * @param  float  $maxCubic   Upper ceiling for box Cubic Weight (Optional)
@@ -36,16 +36,25 @@ class Packer
         // run first iteration so this can get off the ground
         $i = 1;
         $this->packer($items, $boxes, $maxCubic, $maxWeight, $weightType);
+        echo $i;
 
-        // If we've run out of items then return our pickslip data
-        while (!is_null($this->itemID) and !is_null($this->boxID)) {
+        // Keep iterating through items and boxes until we run out.
+        while (!is_null($this->itemID)) {
             $this->packer($items, $boxes, $maxCubic, $maxWeight, $weightType);
             $i++;
         }
-        echo $i;
         return $this->packed;
     }
 
+    /**
+    * Solver
+    * @param  array  $items      Objects to pack
+    * @param  array  $boxes      Boxes to pack into
+    * @param  float  $maxCubic   Upper ceiling for box Cubic Weight (Optional)
+    * @param  float  $maxWeight  Upper ceiling for box Gross Weight (Optional)
+    * @param  string $weightType Used for determining upper ceiling (Optional)
+    * @return array              Packed items
+    */
     public function packer(
         array $items,
         array $boxes,
@@ -57,6 +66,10 @@ class Packer
         // appropriate box
         $this->itemID = $this->findItem($items, $maxCubic, $maxWeight, $weightType);
 
+        if (is_null($this->itemID)) {
+            return null;
+        }
+
         if (is_null($this->findBox($items[$this->itemID], $boxes))) {
             $items[$this->itemID]->noBox = true;
             $this->packed['seperate'][] = $items[$this->itemID];
@@ -66,6 +79,7 @@ class Packer
         // Are we packing an existing box or do we need to start a new one?
         if (is_null($this->boxID) and !$items[$this->itemID]->noBox) {
             $this->boxID = $this->findBox($items[$this->itemID], $boxes);
+            $this->packed[$this->boxID] = $boxes[$this->boxID];
         }
 
         // if we have a box but no item then consider the box full and we'll
@@ -74,6 +88,7 @@ class Packer
             $this->boxID = null;
         } elseif ($this->fitCheck($itemID, $this->boxID, $items[$this->itemID])) {
             $items[$this->itemID]->box = $this->boxID;
+            $this->packed[$this->boxID][] = $items[$this->itemID];
         }
     }
 
@@ -101,9 +116,7 @@ class Packer
                 $availableX -= ($item->x + $item->length);
                 $availableY -= ($item->y + $item->width);
                 $availableZ -= ($item->z + $item->height);
-                unset($item);
             }
-            unset($packed);
         }
 
         $item = $items[$itemID];
@@ -148,7 +161,7 @@ class Packer
      */
     private function findBox(Item $item, array $boxes)//:integer
     {
-        foreach ($boxes as $box) {
+        foreach ($boxes as $key=>$box) {
             $boxID = null;
 
             // loop for rotations so we don't discard a box that fits
@@ -157,7 +170,7 @@ class Packer
                 if ($box->length >= $item->length and
                 $box->width >= $item->width and
                 $box->height >= $item->height) {
-                    return key($box);
+                    return $key;
                 }
                 switch ($i) {
                     case 1:
@@ -173,7 +186,6 @@ class Packer
                         break;
                 }
             }
-            unset($box);
         }
     }
 
@@ -183,18 +195,18 @@ class Packer
      * @param  [type] $maxCubic   [description]
      * @param  [type] $maxWeight  [description]
      * @param  [type] $weightType [description]
-     * @return bool               [description]
+     * @return integer or null    [description]
      */
     private function findItem(
         array $items,
         float $maxCubic = null,
         float $maxWeight = null,
         string $weightType = null
-    ):bool {
+    ) {
         $longest = 0;
-        $itemID = false;
-        foreach ($items as $item) {
-            if ($item->box or $item->noBox === true) {
+        $itemID = null;
+        foreach ($items as $key=>$item) {
+            if (!empty($item->box) or $item->noBox === true) {
                 continue;
             }
 
@@ -229,9 +241,8 @@ class Packer
             $check = max($item->length, $item->width, $item->height);
             if ($check > $longest) {
                 $longest = $check;
-                $itemID = key($item);
+                $itemID = $key;
             }
-            unset($item);
         }
         return $itemID;
     }
