@@ -50,7 +50,7 @@ class Primitive
         $this->height = $object['height'];
         $this->weight = $object['weight'];
 
-        $this->cubic = $object['length'] * $object['width'] * $object['height'];
+        $this->cubic = $object['length'] * $object['width'] * $object['height'] / 4000;
 
         // If not set leave on sane defaults
         if (isset($object['lengthType']) and !empty($object['lengthType'])) {
