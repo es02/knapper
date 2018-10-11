@@ -161,7 +161,7 @@ class Packer
      */
     private function findBox(Item $item, array $boxes)//:integer
     {
-        foreach ($boxes as $key=>$box) {
+        foreach ($boxes as $key => $box) {
             $boxID = null;
 
             // loop for rotations so we don't discard a box that fits
@@ -205,7 +205,7 @@ class Packer
     ) {
         $longest = 0;
         $itemID = null;
-        foreach ($items as $key=>$item) {
+        foreach ($items as $key => $item) {
             if (!empty($item->box) or $item->noBox === true) {
                 continue;
             }
