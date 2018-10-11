@@ -33,15 +33,9 @@ class Packer
         float $maxWeight = null,
         string $weightType = null
     ):array {
-        // run first iteration so this can get off the ground
-        $i = 1;
-        $this->packer($items, $boxes, $maxCubic, $maxWeight, $weightType);
-        echo $i;
-
         // Keep iterating through items and boxes until we run out.
-        while (!is_null($this->itemID)) {
+        while ($this->findItem($items, $maxCubic, $maxWeight, $weightType) === true) {
             $this->packer($items, $boxes, $maxCubic, $maxWeight, $weightType);
-            $i++;
         }
         return $this->packed;
     }
@@ -62,14 +56,7 @@ class Packer
         float $maxWeight = null,
         string $weightType = null
     ) {
-        // Start by finding the longest dimension so we can find an
-        // appropriate box
-        $this->itemID = $this->findItem($items, $maxCubic, $maxWeight, $weightType);
-
-        if (is_null($this->itemID)) {
-            return null;
-        }
-
+        // Start by finding an appropriate box
         if (is_null($this->findBox($items[$this->itemID], $boxes))) {
             $items[$this->itemID]->noBox = true;
             $this->packed['seperate'][] = $items[$this->itemID];
@@ -162,8 +149,6 @@ class Packer
     private function findBox(Item $item, array $boxes)//:integer
     {
         foreach ($boxes as $key => $box) {
-            $boxID = null;
-
             // loop for rotations so we don't discard a box that fits
             for ($i = 1; $i <= 3; $i++) {
                 // find the first box that will accomodate our item
@@ -187,6 +172,7 @@ class Packer
                 }
             }
         }
+        return null;
     }
 
     /**
@@ -241,9 +227,10 @@ class Packer
             $check = max($item->length, $item->width, $item->height);
             if ($check > $longest) {
                 $longest = $check;
-                $itemID = $key;
+                $this->itemID = $key;
+                return true;
             }
         }
-        return $itemID;
+        return false;
     }
 }
