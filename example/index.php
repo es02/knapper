@@ -6,11 +6,13 @@ include "../vendor/autoload.php";
 use es02\knapper\Knapper;
 
 /**
-*
-* Obviously you would place items and boxes
-* in some kind of database and not hard code them like this
-*
-**/
+ *
+ * Obviously you would place items and boxes
+ * in some kind of database and not hard code them like this
+ *
+ * Note: Default mesurement types are being used (Grams and Centimeters)
+ *
+ **/
 
 $items = array(
     array(                  // Should be packed into Box1
@@ -18,14 +20,14 @@ $items = array(
         'length' => 10,
         'width' => 50,
         'height' => 200,
-        'weight' => 2000
+        'weight' => 500
     ),
     array(                  // Should be packed into Box2
         'name' =>'bats',
         'length' => 100,
         'width' => 500,
         'height' => 150,
-        'weight' => 2500
+        'weight' => 1500
     ),
     array(                  // Should be packed into Box2
         'name' =>'cats',
@@ -38,7 +40,7 @@ $items = array(
         'length' => 100,
         'width' => 50,
         'height' => 20,
-        'weight' => 1000
+        'weight' => 800
     ),array(                  // Should be packed into Box1
         'name' =>'gnats',
         'length' => 10,
