@@ -62,7 +62,7 @@ class ItemTest extends TestCase
             $this->assertEquals($item->x, $x);
             $this->assertEquals($item->y, $y);
             $this->assertEquals($item->z, $z);
-            $this->assertEquals($item->cubic, $test['length'] * $test['width'] * $test['height']);
+            $this->assertEquals($item->cubic, $test['length'] * $test['width'] * $test['height'] / 4000);
             unset($item);
         }
     }
