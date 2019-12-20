@@ -103,7 +103,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Tom Hobson** - *Initial work* - [ArachnidsGrip](https://github.com/es02)
+* **Aimi Hobson** - *Initial work* - [ArachnidsGrip](https://github.com/es02)
 
 ## License
 
