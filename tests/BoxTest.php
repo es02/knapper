@@ -2,7 +2,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use es02\Knapper\model\Box;
+use es02\knapper\model\Box;
 
 class BoxTest extends TestCase
 {
@@ -50,7 +50,7 @@ class BoxTest extends TestCase
             $this->assertEquals($box->lengthType, $lengthType);
             $this->assertEquals($box->weightType, $weightType);
             $this->assertEquals($box->thisWayUp, $thisWayUp);
-            $this->assertEquals($box->cubic, $test['length'] * $test['width'] * $test['height']);
+            $this->assertEquals($box->cubic, $test['length'] * $test['width'] * $test['height'] / 4000);
             unset($box);
         }
     }

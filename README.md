@@ -25,6 +25,10 @@ composer require es02/knapper
 ### Usage
 
 ```
+include "../vendor/autoload.php";
+
+use es02\knapper\Knapper;
+
 $knapper = new Knapper($items, $boxes);
 $results = $knapper->pack();
 ```

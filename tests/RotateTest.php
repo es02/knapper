@@ -2,9 +2,9 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use es02\Knapper\controller\Rotate2d;
-use es02\Knapper\controller\Rotate3d;
-use es02\Knapper\model\Item;
+use es02\knapper\controller\Rotate2d;
+use es02\knapper\controller\Rotate3d;
+use es02\knapper\model\Item;
 
 class RotateTest extends TestCase
 {

@@ -1,14 +1,16 @@
 <?php
-namespace es02\Knapper\controller;
+namespace es02\knapper\controller;
 
-use es02\Knapper\controller\Utilities;
-use es02\Knapper\controller\Rotate2d;
-use es02\Knapper\controller\Rotate3d;
+use es02\knapper\controller\Utilities;
+use es02\knapper\controller\Rotate2d;
+use es02\knapper\controller\Rotate3d;
+use es02\knapper\model\Item;
 
 class Packer
 {
     private $packed = array();
     private $boxID = null;
+    private $itemID = null;
 
     public function __construct()
     {
@@ -16,7 +18,7 @@ class Packer
     }
 
     /**
-    * Solver
+    * Wrapper for solver - cuts memory usage and reduces liklihood of leaks
     * @param  array  $items      Objects to pack
     * @param  array  $boxes      Boxes to pack into
     * @param  float  $maxCubic   Upper ceiling for box Cubic Weight (Optional)
@@ -31,30 +33,50 @@ class Packer
         float $maxWeight = null,
         string $weightType = null
     ):array {
-        // Start by finding the longest dimension so we can find an
-        // appropriate box
-        $itemID = $this->findItem($items, $maxCubic, $maxWeight, $weightType);
+        // Keep iterating through items and boxes until we run out.
+        while ($this->findItem($items, $maxCubic, $maxWeight, $weightType) === true) {
+            $this->packer($items, $boxes, $maxCubic, $maxWeight, $weightType);
+        }
+        return $this->packed;
+    }
 
-        // If we've run out of items then return our pickslip data
-        if (null($itemID) and null($this->boxID)) {
-            return $this->packed;
+    /**
+    * Solver
+    * @param  array  $items      Objects to pack
+    * @param  array  $boxes      Boxes to pack into
+    * @param  float  $maxCubic   Upper ceiling for box Cubic Weight (Optional)
+    * @param  float  $maxWeight  Upper ceiling for box Gross Weight (Optional)
+    * @param  string $weightType Used for determining upper ceiling (Optional)
+    * @return array              Packed items
+    */
+    public function packer(
+        array $items,
+        array $boxes,
+        float $maxCubic = null,
+        float $maxWeight = null,
+        string $weightType = null
+    ) {
+        // Start by finding an appropriate box
+        if (is_null($this->findBox($items[$this->itemID], $boxes))) {
+            $items[$this->itemID]->noBox = true;
+            $this->packed['seperate'][] = $items[$this->itemID];
+            return null;
         }
 
         // Are we packing an existing box or do we need to start a new one?
-        if (null($this->boxID)) {
-            $this->boxID = $this->findBox($items[$itemID], $boxes);
+        if (is_null($this->boxID) and !$items[$this->itemID]->noBox) {
+            $this->boxID = $this->findBox($items[$this->itemID], $boxes);
+            $this->packed[$this->boxID] = $boxes[$this->boxID];
         }
 
         // if we have a box but no item then consider the box full and we'll
         // open a new one on the next pass.
-        if (null($itemID)) {
+        if (is_null($itemID)) {
             $this->boxID = null;
-        } elseif ($this->fitCheck($itemID, $boxID, $items[$itemID])) {
-            $item->box = $boxID;
+        } elseif ($this->fitCheck($itemID, $this->boxID, $items[$this->itemID])) {
+            $items[$this->itemID]->box = $this->boxID;
+            $this->packed[$this->boxID][] = $items[$this->itemID];
         }
-
-        // iterate
-        $this->pack($items, $boxes, $maxCubic, $maxWeight, $weightType);
     }
 
     /**
@@ -65,9 +87,9 @@ class Packer
      * @return bool
      */
     private function fitCheck(
-        integer $itemID,
-        integer $boxID,
-        item $items
+        int $itemID,
+        int $boxID,
+        Item $items
     ):bool {
         $availableX = $boxes[$boxID]->length;
         $availableY = $boxes[$boxID]->width;
@@ -83,7 +105,8 @@ class Packer
                 $availableZ -= ($item->z + $item->height);
             }
         }
-        $item = $items;
+
+        $item = $items[$itemID];
 
         // Don't 3D rotate for thiswayup items
         $end = 4;
@@ -123,21 +146,33 @@ class Packer
      * @param  array   $boxes  Array of boxes
      * @return integer         box ID
      */
-    private function findBox(item $item, array $boxes):integer
+    private function findBox(Item $item, array $boxes)//:integer
     {
-        foreach ($boxes as $box) {
-            $boxID = null;
-
+        foreach ($boxes as $key => $box) {
             // loop for rotations so we don't discard a box that fits
             for ($i = 1; $i <= 3; $i++) {
                 // find the first box that will accomodate our item
                 if ($box->length >= $item->length and
                 $box->width >= $item->width and
                 $box->height >= $item->height) {
-                    return key($box);
+                    return $key;
+                }
+                switch ($i) {
+                    case 1:
+                        Rotate3d::rotateXY($item);
+                        break;
+                    case 2:
+                        Rotate3d::rotateZ($item);
+                        break;
+                    case 3:
+                        Rotate3d::rotateXY($item);
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+        return null;
     }
 
     /**
@@ -146,18 +181,18 @@ class Packer
      * @param  [type] $maxCubic   [description]
      * @param  [type] $maxWeight  [description]
      * @param  [type] $weightType [description]
-     * @return bool               [description]
+     * @return integer or null    [description]
      */
     private function findItem(
         array $items,
         float $maxCubic = null,
         float $maxWeight = null,
         string $weightType = null
-    ):bool {
+    ) {
         $longest = 0;
         $itemID = null;
-        foreach ($items as $item) {
-            if (!null($item->$box or $item->noBox === true)) {
+        foreach ($items as $key => $item) {
+            if (!empty($item->box) or $item->noBox === true) {
                 continue;
             }
 
@@ -177,12 +212,12 @@ class Packer
                     $weightTemp
                 );
             }
-            if (!null($maxCubic) and $cubeTemp > $maxCubic) {
+            if (!is_null($maxCubic) and $cubeTemp > $maxCubic) {
                 $item->noBox = true;
                 $this->packed['seperate'][] = $item;
                 continue;
             }
-            if (!null($maxWeight) and $weightTemp > $maxWeight) {
+            if (!is_null($maxWeight) and $weightTemp > $maxWeight) {
                 $item->noBox = true;
                 $this->packed['seperate'][] = $item;
                 continue;
@@ -192,9 +227,10 @@ class Packer
             $check = max($item->length, $item->width, $item->height);
             if ($check > $longest) {
                 $longest = $check;
-                $itemID = key($item);
+                $this->itemID = $key;
+                return true;
             }
         }
-        return $itemID;
+        return false;
     }
 }

@@ -8,10 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Licence, Contributing guide and this Changelog
 - Basic folder structure
-- composer.json skeleton
-- Base class skeleton
-- Models stubbed in
-- Initial controllers stubbed in
+- composer.json
+- Base classes
+- Models
+- Controllers
 - Added PHPUnit for dev builds only
 - Added PHPLint for dev builds only
 - Added PHP_CodeStandards for dev builds only

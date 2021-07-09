@@ -1,8 +1,8 @@
 <?php
 
-namespace es02\Knapper\model;
+namespace es02\knapper\model;
 
-use es02\Knapper\controller\Utilities;
+use es02\knapper\controller\Utilities;
 
 class Item extends Primitive
 {

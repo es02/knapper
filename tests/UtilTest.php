@@ -2,7 +2,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use es02\Knapper\controller\Utilities;
+use es02\knapper\controller\Utilities;
 
 class UtilTest extends TestCase
 {

@@ -3,7 +3,7 @@ namespace es02\knapper;
 
 use es02\knapper\model\Item;
 use es02\knapper\model\Box;
-use es02\knapper\controller\packer;
+use es02\knapper\controller\Packer;
 
 /**
  * Knapper: A simple, dependancy free knapsack solver intended for optimizing
@@ -87,7 +87,7 @@ Knapper"
         foreach ($items as $item) {
             $this->items[] = new Item($item);
         }
-        foreach ($boxs as $box) {
+        foreach ($boxes as $box) {
             $this->boxs[] = new Box($box);
         }
     }
